@@ -87,11 +87,11 @@ export class PlannerComponent {
     this.clearPlan();
     plan.forEach((pin: Pin, index: number) => {
       this.drawPin(pin.x, pin.y);
+      this.flightPlan.push(pin);
 
       if (index > 0) {
         this.drawLine([plan[index - 1], pin]);
       }
     });
-    this.flightPlan = plan;
   }
 }
