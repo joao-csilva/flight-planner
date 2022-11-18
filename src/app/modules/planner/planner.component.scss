@@ -1,0 +1,27 @@
+.planner-container {
+    display: flex;
+    column-gap: 16px;
+    padding: 16px;
+
+    .map-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 16px;
+    
+        #map {
+            background-image: url("../../../assets/map.jpg");
+            cursor: pointer;
+        }
+
+        .save-plan-form {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .plan-list-container {
+        .list-group-item {
+            cursor: pointer;
+        }
+    }
+}

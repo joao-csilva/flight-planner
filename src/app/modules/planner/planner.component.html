@@ -1,0 +1,34 @@
+<div class="planner-container">
+    <div class="map-container">
+        <canvas id="map" width="500px" height="500px" (click)="setPin($event)" #map></canvas>
+
+        <button
+            (click)="clearPlan()"
+            [disabled]="flightPlan.length === 0"
+            class="btn btn-light">
+            {{ clearPlanLabel }}
+        </button>
+
+        <form [formGroup]="formNewPlan" (ngSubmit)="saveNewPlan()" class="save-plan-form">
+            <label for="planName" class="form-label">{{ planNameLabel }}</label>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="planName" formControlName="planName" [placeholder]="planNamePlaceholder">
+                <button type="submit" class="btn btn-outline-secondary" [disabled]="!formNewPlan.valid || flightPlan.length === 0">{{ formNewPlanSubmitLabel }}</button>
+            </div>
+        </form>
+    </div>
+    <div class="plan-list-container">
+        <h2>{{ listTitle }}</h2>
+        <ul class="list-group" *ngIf="plannerService.savedFlightPlans.length > 0; else noSavedFlightPlans">
+            <li
+                class="list-group-item"
+                *ngFor="let flightPlan of plannerService.savedFlightPlans"
+                (click)="openFlightPlan(flightPlan.plan)">
+                {{ flightPlan.name }}
+            </li>
+        </ul>
+        <ng-template #noSavedFlightPlans>
+            <span>{{ noSavedFlightPlansLabel }}</span>
+        </ng-template>
+    </div>
+</div>
